@@ -1,8 +1,8 @@
-package com.sparta.schedule.service;
+package com.sparta.schedule.Lv1.service;
 
-import com.sparta.schedule.dto.ScheduleRequestDto;
-import com.sparta.schedule.dto.ScheduleResponseDto;
-import com.sparta.schedule.entity.Schedule;
+import com.sparta.schedule.Lv1.dto.ScheduleRequestDto;
+import com.sparta.schedule.Lv1.dto.ScheduleResponseDto;
+import com.sparta.schedule.Lv1.entity.Schedule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ScheduleServiceImpl implements ScheduleService {
 
-    private final com.sparta.schedule.repository.ScheduleRepository ScheduleRepository;
+    private final com.sparta.schedule.Lv1.repository.ScheduleRepository ScheduleRepository;
 
     /**
      * 일정 생성

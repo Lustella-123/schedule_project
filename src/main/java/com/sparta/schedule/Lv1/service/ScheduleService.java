@@ -1,7 +1,7 @@
-package com.sparta.schedule.service;
+package com.sparta.schedule.Lv1.service;
 
-import com.sparta.schedule.dto.ScheduleRequestDto;
-import com.sparta.schedule.dto.ScheduleResponseDto;
+import com.sparta.schedule.Lv1.dto.ScheduleRequestDto;
+import com.sparta.schedule.Lv1.dto.ScheduleResponseDto;
 
 import java.util.List;
 
