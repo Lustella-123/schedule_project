@@ -1,4 +1,12 @@
-# API 명세서(Schedule)
+# ✅주의사항
+충돌 없이 각 Lv을 실행하기 위해서는 약간의 조작이 필요합니다.<br>
+아래에 Lv1을 원하는 레벨에 맞추어 수정 후 실행하시면 됩니다.
+### ScheduleApplication<br>
+@EntityScan(basePackages = "com.sparta.schedule.`Lv1`.entity")<br>
+@ComponentScan(basePackages = {"com.sparta.schedule.`Lv1`"})<br>
+@EnableJpaRepositories(basePackages = "com.sparta.schedule.`Lv1`.repository")<br>
+
+# 🔐API 명세서(Schedule)
 
 | **HTTP Method** | **Endpoint**         | **Description**             | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
 |------------------|----------------------|-----------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
@@ -7,7 +15,7 @@
 | PUT              | `/schedule/{id}`        | 선택 일정 수정              | **Path Variable**: `id` (Long)<br>**Body**: `ScheduleRequestDto`  | `ScheduleResponseDto`                            | 200 OK             |
 | DELETE           | `/schedule/{id}`        | 선택 일정 삭제              | **Path Variable**: `id` (Long)                                    | -                                                | 200 OK             |
 
-# API 명세서(User)
+# 🔐API 명세서(User)
 
 | **HTTP Method** | **Endpoint**         | **Description**             | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
 |------------------|----------------------|-----------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
@@ -19,7 +27,7 @@
 
 
 
-## Request Param & Body (예시)
+## 📌Request Param & Body (예시)
 
 - `POST /schedule` : 일정 생성
 ```param
