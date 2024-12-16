@@ -19,10 +19,18 @@
 
 | **HTTP Method** | **Endpoint**         | **Description**             | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
 |------------------|----------------------|-----------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
-| POST             | `/user`             | 사용자 생성                   | **Body**: `UserRequestDto`                                    | `UserResponseDto`                            | 201 Created        |
+| POST             | `/user/signin`      | 사용자 생성 (회원가입)         | **Body**: `UserRequestDto`                                    | `UserResponseDto`                            | 201 Created        |
 | GET              | `/user`             | 전체 사용자 조회              | -                                                                 | `List<UserResponseDto>`                      | 200 OK             |
 | PUT              | `/user/{id}`        | 선택 사용자 수정              | **Path Variable**: `id` (Long)<br>**Body**: `UserRequestDto`  | `UserResponseDto`                            | 200 OK             |
 | DELETE           | `/user/{id}`        | 선택 사용자 삭제              | **Path Variable**: `id` (Long)                                    | -                                                | 200 OK             |
+
+# 🔐API 명세서(Login)
+
+| **HTTP Method** | **Endpoint**         | **Description**            | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
+|------------------|----------------------|---------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
+| POST             | `/login`             | 로그인                    | **Body**: `email`, `password`                                    | `UserResponseDto`                            | 200 Created        |
+| POST             | `/logout`            | 로그아웃                  | -                                                                 | `"로그아웃되었습니다."`                      | 200 OK             |
+
 ---
 
 
