@@ -3,6 +3,7 @@ package com.sparta.schedule.Lv5.service;
 import com.sparta.schedule.Lv5.dto.UserRequestDto;
 import com.sparta.schedule.Lv5.dto.UserResponseDto;
 import com.sparta.schedule.Lv5.entity.User;
+import com.sparta.schedule.Lv5.filter.PasswordEncoder;
 import com.sparta.schedule.Lv5.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -26,25 +27,21 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserResponseDto saveUser(UserRequestDto userRequestDto) {
-        // username 중복 불가 검증
         if (userRepository.existsByUsername(userRequestDto.getUsername())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Username already exists");
         }
-        // 비밀번호 유무 검증
         if (userRequestDto.getPassword() == null || userRequestDto.getPassword().trim().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is required");
         }
-        // 이메일 유무 검증
         if (userRequestDto.getEmail() == null || userRequestDto.getEmail().trim().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email is required");
         }
 
-        // User 엔티티 생성
-        User user = new User(userRequestDto.getUsername(), userRequestDto.getEmail(), userRequestDto.getPassword());
-        // 데이터베이스에 저장
+        String password = new PasswordEncoder().encode(userRequestDto.getPassword());
+
+        User user = new User(userRequestDto.getUsername(), userRequestDto.getEmail(), password);
         User savedUser = userRepository.save(user);
 
-        // 결과 반환
         return new UserResponseDto(savedUser.getId(), savedUser.getUsername(), savedUser.getEmail(), savedUser.getCreatedAt());
     }
 
@@ -107,7 +104,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 사용자가 없습니다"));
 
-        if (!user.getPassword().equals(password)) {
+        if (new PasswordEncoder().matches(password, user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
         }
 
