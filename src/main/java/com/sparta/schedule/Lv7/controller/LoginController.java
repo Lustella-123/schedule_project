@@ -1,8 +1,9 @@
-package com.sparta.schedule.Lv5.controller;
+package com.sparta.schedule.Lv7.controller;
 
-import com.sparta.schedule.Lv5.dto.LoginRequestDto;
-import com.sparta.schedule.Lv5.dto.UserResponseDto;
-import com.sparta.schedule.Lv5.service.UserService;
+import com.sparta.schedule.Lv7.dto.LoginRequestDto;
+import com.sparta.schedule.Lv7.dto.UserResponseDto;
+import com.sparta.schedule.Lv7.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class LoginController {
      */
     @PostMapping("/login")
     public ResponseEntity<UserResponseDto> login(
-            @RequestBody LoginRequestDto requestDto
+            @Valid @RequestBody LoginRequestDto requestDto
     ) {
         return new ResponseEntity<>(userService.login(requestDto.getEmail(), requestDto.getPassword()), HttpStatus.OK);
     }

@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaAuditing
 @SpringBootApplication
-@EntityScan(basePackages = "com.sparta.schedule.Lv5.entity")
-@ComponentScan(basePackages = {"com.sparta.schedule.Lv5"})
-@EnableJpaRepositories(basePackages = "com.sparta.schedule.Lv5.repository")
+@EntityScan(basePackages = "com.sparta.schedule.Lv7.entity")
+@ComponentScan(basePackages = {"com.sparta.schedule.Lv7"})
+@EnableJpaRepositories(basePackages = "com.sparta.schedule.Lv7.repository")
 public class ScheduleApplication {
 
 	public static void main(String[] args) {
