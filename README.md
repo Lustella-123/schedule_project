@@ -6,15 +6,6 @@
 @ComponentScan(basePackages = {"com.sparta.schedule.`Lv1`"})<br>
 @EnableJpaRepositories(basePackages = "com.sparta.schedule.`Lv1`.repository")<br>
 
-# 🔐API 명세서(Schedule)
-
-| **HTTP Method** | **Endpoint**         | **Description**             | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
-|------------------|----------------------|-----------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
-| POST             | `/schedule`             | 일정 생성                   | **Body**: `ScheduleRequestDto`                                    | `ScheduleResponseDto`                            | 201 Created        |
-| GET              | `/schedule`             | 전체 일정 조회              | -                                                                 | `List<ScheduleResponseDto>`                      | 200 OK             |
-| PUT              | `/schedule/{id}`        | 선택 일정 수정              | **Path Variable**: `id` (Long)<br>**Body**: `ScheduleRequestDto`  | `ScheduleResponseDto`                            | 200 OK             |
-| DELETE           | `/schedule/{id}`        | 선택 일정 삭제              | **Path Variable**: `id` (Long)                                    | -                                                | 200 OK             |
-
 # 🔐API 명세서(User)
 
 | **HTTP Method** | **Endpoint**         | **Description**             | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
@@ -30,6 +21,24 @@
 |------------------|----------------------|---------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
 | POST             | `/login`             | 로그인                    | **Body**: `email`, `password`                                    | `UserResponseDto`                            | 200 Created        |
 | POST             | `/logout`            | 로그아웃                  | -                                                                 | `"로그아웃되었습니다."`                      | 200 OK             |
+
+# 🔐API 명세서(Schedule)
+
+| **HTTP Method** | **Endpoint**         | **Description**             | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
+|------------------|----------------------|-----------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
+| POST             | `/schedule`             | 일정 생성                   | **Body**: `ScheduleRequestDto`                                    | `ScheduleResponseDto`                            | 201 Created        |
+| GET              | `/schedule`             | 전체 일정 조회              | -                                                                 | `List<ScheduleResponseDto>`                      | 200 OK             |
+| PUT              | `/schedule/{id}`        | 선택 일정 수정              | **Path Variable**: `id` (Long)<br>**Body**: `ScheduleRequestDto`  | `ScheduleResponseDto`                            | 200 OK             |
+| DELETE           | `/schedule/{id}`        | 선택 일정 삭제              | **Path Variable**: `id` (Long)                                    | -                                                | 200 OK             |
+
+# 🔐API 명세서(Comment)
+
+| **HTTP Method** | **Endpoint**         | **Description**             | **Path Variable / Body**                                            | **Response**                                     | **Status Code**    |
+|------------------|----------------------|-----------------------------|---------------------------------------------------------------------|--------------------------------------------------|--------------------|
+| POST             | `/schedule/{scheduleId}/comment`             | 댓글 생성                   | **Body**: `CommentRequestDto`                                    | `CommentResponseDto`                            | 201 Created        |
+| GET              | `/schedule/{scheduleId}/comment`             | 전체 댓글 조회              | -                                                                 | `List<CommentResponseDto>`                      | 200 OK             |
+| PUT              | `/schedule/{scheduleId}/comment/{commentId}` | 선택 댓글 수정              | **Path Variable**: `scheduleId`, `commentId` (Long)<br>**Body**: `CommentRequestDto`  | `CommentResponseDto`                            | 200 OK             |
+| DELETE           | `/schedule/{scheduleId}/comment/{commentId}` | 선택 댓글 삭제              | **Path Variable**: `scheduleId`, `commentId` (Long)                                    | -                                                | 200 OK             |
 
 ---
 
