@@ -66,17 +66,13 @@ public class UserServiceImpl implements UserService {
     public UserResponseDto updateUser(UserRequestDto userRequestDto, Long id) {
         User user = userRepository.findById(id).orElse(null);
 
-        // 존재하지 않는 id
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No id");
         }
 
-        // 사용자 정보 업데이트
         user.update(userRequestDto.getUsername(), userRequestDto.getEmail(), userRequestDto.getPassword());
-        // 저장
         user = userRepository.save(user);
 
-        // 결과 반환
         return new UserResponseDto(user.getId(), user.getUsername(), user.getEmail(), user.getCreatedAt());
     }
 
@@ -101,15 +97,16 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserResponseDto login(String email, String password) {
+
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "등록된 사용자가 없습니다"));
 
-        if (new PasswordEncoder().matches(password, user.getPassword())) {
+        if (!new PasswordEncoder().matches(password, user.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "비밀번호가 일치하지 않습니다.");
         }
 
-        HttpSession session = httpServletRequest.getSession(true);  // 세션 생성
-        session.setAttribute("sessionKey", user.getId()); // 사용자 ID 저장
+        HttpSession session = httpServletRequest.getSession(true);
+        session.setAttribute("sessionKey", user.getId());
 
         return new UserResponseDto(user.getId(), user.getUsername(), user.getEmail(), user.getCreatedAt());
     }

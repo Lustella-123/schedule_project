@@ -38,6 +38,7 @@ public class LoginFilter implements Filter {
         }
     }
 
+
     private boolean isAuthenticationRequired(String requestURI) {
         for (String whiteListPath : WHITE_LIST) {
             if (requestURI.equals(whiteListPath)) {

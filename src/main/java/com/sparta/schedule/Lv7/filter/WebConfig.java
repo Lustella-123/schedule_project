@@ -16,7 +16,6 @@ public class WebConfig {
         filterRegistrationBean.setFilter(new LoginFilter());
         filterRegistrationBean.setOrder(1);
         filterRegistrationBean.addUrlPatterns("/*");
-        System.out.println("WebConfig 필터 등록.");
 
         return filterRegistrationBean;
     }

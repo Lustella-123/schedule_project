@@ -1,5 +1,6 @@
 package com.sparta.schedule.Lv7.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -13,7 +14,7 @@ public class UserRequestDto {
     private String username;
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$", message = "{.email}")
+    @Email(message = "{.email}")
     private String email;
 
     @NotBlank
